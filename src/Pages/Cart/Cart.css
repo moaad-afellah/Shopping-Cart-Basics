@@ -1,0 +1,7 @@
+.cart-page{
+    min-height: calc(100vh - 176px);
+}
+.alert{
+    height: calc(100vh - 176px) !important;
+    margin: 0 !important;
+}
