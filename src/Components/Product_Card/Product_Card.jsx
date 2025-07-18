@@ -3,19 +3,24 @@ import { PropTypes } from "prop-types";
 import "./Product_Card.css"
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { addToCart } from "../../RTK/Slices/CartSlice";
 
 
 export function Product_Card( { product } ) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const myCart = useSelector(state => state.cart)
 
   const addToCartHandler = () =>{
+   if(myCart.find((item) => item.id == product.id)){
+    alert('THIS PRODUCT IS ALREADY ADDED')
+ 
+  }else{
     dispatch(addToCart(product))
     navigate("/cart")
   }
-
+  }
   return (
     <Card className="product-card mb-3 bg-body-secondary">
         <p className="fw-bold text-center py-2 m-0 text-primary">{product.brand}</p>

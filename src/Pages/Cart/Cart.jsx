@@ -1,6 +1,6 @@
 import { Button, Container, Table } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { Cart_List } from "../../Components/Cart_list/Cart_list"
+import { Cart_List } from "../../Components/Cart_List/Cart_List"
 import { clearCart } from "../../RTK/Slices/CartSlice"
 import { useNavigate } from "react-router-dom"
 import { VscClearAll } from "react-icons/vsc";

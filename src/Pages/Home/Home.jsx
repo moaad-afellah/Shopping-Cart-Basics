@@ -1,11 +1,10 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Product_Card } from "../../Components/Product_Card/Product_Card";
 import { useEffect } from "react";
 import { fetchProducts } from "../../RTK/Slices/ProductSlice";
 import { Title_Page } from "../../Components/Title_Page/Title_Page";
 import { Slide_Carousel } from "../../Components/Slide_Carousel/Slide_Carousel";
-
+import { Product_Card } from "../../Components/Product_Card/Product_Card";
 
 export function Home() {
   const  { products } = useSelector(state => state)
@@ -27,7 +26,7 @@ export function Home() {
           {
               productsOffer.map((product) => {
                 return <Col lg={4} md={6} key={product.id}>
-                  <Product_Card product={product} />
+                  <Product_Card product={product}/>
                 </Col>
               })
             }
