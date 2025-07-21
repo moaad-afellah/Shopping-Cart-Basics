@@ -4,34 +4,36 @@ import productsData from "../../server/db.json"
 
 const initialState = {
     state: [],
+
+
 }
 const sliceName = "productsSlice";
 
-export const fetchProducts = createAsyncThunk(
-    `${sliceName}/fetchProducts`,
-    async () => {
-        //const res = await fetch ("http://localhost:3000/products")
-        //const data = await res.json()
 
-        return new Promise((resolve) => {
 
-            setTimeout(() => { return resolve(productsData) }, 3000)
-        })
+export const fetchProducts = () => {
+
+    console.log('Fetching Products from the server ...')
+    return new Promise((resolve) => {
+
+        setTimeout(() => { resolve(productsData) }, 100)
     })
+}
+
 
 
 const productsSlice = createSlice({
     name: sliceName,
     initialState: initialState.state,
     reducers: {
+        addAllFetchProducts(state, action) {
+            return state = action.payload
+
+        },
 
     },
-    extraReducers: (builder) => {
-        builder.addCase(fetchProducts.fulfilled, (state, action) => {
-            state = action.payload.products
-            return state
-        })
-    }
 })
+
+export const { addAllFetchProducts } = productsSlice.actions
 
 export const productsReducer = productsSlice.reducer

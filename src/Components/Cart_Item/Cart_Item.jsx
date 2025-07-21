@@ -19,7 +19,8 @@ export default function Cart_Item({ item }) {
             title: "The product has been deleted",
             showConfirmButton: true,
         });
-        dispatch(removeFromCart(id))
+     
+        dispatch(removeFromCart({id}))
     }
 
     return (

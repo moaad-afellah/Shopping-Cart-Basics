@@ -10,14 +10,14 @@ import { addToCart } from "../../RTK/Slices/CartSlice";
 export function Product_Card( { product } ) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const myCart = useSelector(state => state.cart)
+  const myCart = useSelector(state => state.cart.products)
 
   const addToCartHandler = () =>{
    if(myCart.find((item) => item.id == product.id)){
     alert('THIS PRODUCT IS ALREADY ADDED')
  
   }else{
-    dispatch(addToCart(product))
+    dispatch(addToCart({product}))
     navigate("/cart")
   }
   }

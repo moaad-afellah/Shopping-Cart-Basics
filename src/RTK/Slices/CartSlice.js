@@ -1,29 +1,52 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
+
 const sliceName = "cartSlice";
 
 
 const cartSlice = createSlice({
     name: sliceName,
-    initialState: [],
+    initialState: { products: [], historyActions: [] },
     reducers: {
         addToCart(state, action) {
-            const product = state.find((item) => item.id == action.payload.id);
-            const newProduct = { ...action.payload, qyt: 1 }
-            state.push(newProduct)
+            const newProduct = { ...action.payload.product, qyt: 1 }
+            state.products.push(newProduct)
+            if(!action.payload.undoOperation){
+               state.historyActions.push({action:action.payload.product , historyType:'addToCart'}) 
+            }else{
+                state.historyActions.pop()
+            }
+            
 
         },
         modifyQuantityByAmount(state, action) {
-            const product = state.find((item) => item.id == action.payload.item.id);
+            const product = state.products.find((item) => item.id == action.payload.item.id);
             product.qyt += action.payload.quantity
+
+            if(!action.payload.undoOperation){
+                state.historyActions.push({action, historyType: 'modifyQuantity'})
+            }else{
+                state.historyActions.pop()
+            }
+    
+
+            return state;
         },
         removeFromCart(state, action) {
-            return state.filter(item => item.id != action.payload)
+           state.products = state.products.filter((item) => item.id != action.payload.id)
+           if(action.payload.undoOperation){
+                state.historyActions.pop()
+           }else{
+            state.historyActions.push({id:action.payload.id , historyType:'removeFromCart'})
+           }
+           return state;
         },
         clearCart() {
-            return [];
-        }
+            state.products = []
+            return state
+        },
+        
     },
 })
 

@@ -4,7 +4,7 @@ import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 
 export function Nav_Bar() {
-  const cart = useSelector(state => state.cart)
+  const cart = useSelector(state => state.cart.products)
   return (
     <Navbar bg="dark" data-bs-theme="dark" expand="lg" sticky="top">
     <Container>
