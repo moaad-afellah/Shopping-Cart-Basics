@@ -2,6 +2,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import DropDown from "../Components/DropDown/DropDown";
 
 export function Nav_Bar() {
   const cart = useSelector(state => state.cart.products)
@@ -26,6 +27,7 @@ export function Nav_Bar() {
           </NavLink>
         </Nav>
       </Navbar.Collapse>
+      <DropDown/>
     </Container>
   </Navbar>
   )

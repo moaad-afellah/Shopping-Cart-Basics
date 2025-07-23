@@ -7,23 +7,25 @@ import { useDispatch, useSelector} from "react-redux";
 import { addToCart } from "../../RTK/Slices/CartSlice";
 
 
-export function Product_Card( { product } ) {
+
+export function Product_Card({ product }) {
+  const myCart = useSelector(state => state.cart.products)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const myCart = useSelector(state => state.cart.products)
 
-  const addToCartHandler = () =>{
-   if(myCart.find((item) => item.id == product.id)){
-    alert('THIS PRODUCT IS ALREADY ADDED')
- 
-  }else{
-    dispatch(addToCart({product}))
-    navigate("/cart")
-  }
+
+  const addToCartHandler = () => {
+    if (myCart.find((item) => item.id == product.id)) {
+      alert('THIS PRODUCT IS ALREADY ADDED')
+
+    } else {
+      dispatch(addToCart({ product }))
+      navigate("/cart")
+    }
   }
   return (
     <Card className="product-card mb-3 bg-body-secondary">
-        <p className="fw-bold text-center py-2 m-0 text-primary">{product.brand}</p>
+      <p className="fw-bold text-center py-2 m-0 text-primary">{product.brand}</p>
       <Card.Img className="product-card__image rounded-0" variant="top" src={product.thumbnail} />
       <Card.Body>
         <Card.Title>Title: {product.title}</Card.Title>
@@ -39,5 +41,5 @@ export function Product_Card( { product } ) {
 
 
 Product_Card.propTypes = {
-    product : PropTypes.object,
+  product: PropTypes.object,
 }

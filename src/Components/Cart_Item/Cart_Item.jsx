@@ -6,21 +6,29 @@ import { modifyQuantityByAmount } from "../../RTK/Slices/CartSlice"
 import { removeFromCart } from "../../RTK/Slices/CartSlice"
 import { FaRegTrashCan } from "react-icons/fa6";
 import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux";
 
 
 export default function Cart_Item({ item }) {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const myCart = useSelector(state => state.cart.products)
+
 
 
     const removeItemHandler = (id) => {
+        dispatch(removeFromCart({ id }))
+        navigate("/")
         Swal.fire({
             position: "center",
             icon: "success",
             title: "The product has been deleted",
             showConfirmButton: true,
         });
-     
-        dispatch(removeFromCart({id}))
+
+
+
     }
 
     return (
@@ -42,7 +50,7 @@ export default function Cart_Item({ item }) {
                     {item.category}
                 </td>
                 <td className="text-center py-5 fw-bold">
-                    <button className="taggleButton" onClick={() => dispatch(modifyQuantityByAmount({ item , quantity: 1 }))}>+</button>
+                    <button className="taggleButton" onClick={() => dispatch(modifyQuantityByAmount({ item, quantity: 1 }))}>+</button>
                     {item.qyt}
                     <button className="taggleButton" onClick={() => dispatch(modifyQuantityByAmount({ item, quantity: -1 }))}>-</button>
                 </td>

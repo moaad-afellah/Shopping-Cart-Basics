@@ -11,7 +11,6 @@ function UndoOpirationButton() {
     const handleClickUndoOperationCart = () => {
         if (historyActions[historyActions.length - 1].historyType == 'modifyQuantity') {
             let lastActionInCart = historyActions[historyActions.length - 1].action;
-            console.log(lastActionInCart)
             let undoOfLastActionInCart = { item: lastActionInCart.payload.item, quantity: -1 * lastActionInCart.payload.quantity, undoOperation: true }
             dispatch(modifyQuantityByAmount(undoOfLastActionInCart))
         } else if (historyActions[historyActions.length - 1].historyType == 'addToCart') {

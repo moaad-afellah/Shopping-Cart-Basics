@@ -1,0 +1,30 @@
+.custom-dropdown .dropdown-toggle {
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.custom-dropdown-menu {
+  border-radius: 12px;
+  padding: 10px;
+  min-width: 230px;
+}
+
+.custom-dropdown-menu .dropdown-item {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.custom-dropdown-menu .dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.custom-dropdown-menu .text-danger:hover {
+  background-color: #f8d7da;
+  color: #a71d2a;
+}

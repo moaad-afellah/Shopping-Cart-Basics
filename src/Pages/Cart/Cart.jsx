@@ -2,14 +2,12 @@ import { Button, Container, Table } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { Cart_List } from "../../Components/Cart_List/Cart_List"
 import { clearCart } from "../../RTK/Slices/CartSlice"
-import { useNavigate } from "react-router-dom"
 import { VscClearAll } from "react-icons/vsc";
 import Swal from 'sweetalert2'
 import "./Cart.css"
 export function Cart() {
   const cart = useSelector(state => state.cart.products)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const clearCartHandler = () => {
     Swal.fire({
@@ -23,11 +21,12 @@ export function Cart() {
   }
 
   if (cart.length == 0) {
-    navigate("/")
     return <h1 className="alert alert-danger py-5 text-center">
       There are no products to display
     </h1>
   }
+
+
 
   let totalPrice = cart.reduce((acc, current) => {
     return acc + current.price * current.qyt

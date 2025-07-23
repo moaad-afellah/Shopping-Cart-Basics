@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-import productsData from "../../server/db.json"
+
 
 const initialState = {
     state: [],
@@ -8,19 +8,6 @@ const initialState = {
 
 }
 const sliceName = "productsSlice";
-
-
-
-export const fetchProducts = () => {
-
-    console.log('Fetching Products from the server ...')
-    return new Promise((resolve) => {
-
-        setTimeout(() => { resolve(productsData) }, 100)
-    })
-}
-
-
 
 const productsSlice = createSlice({
     name: sliceName,

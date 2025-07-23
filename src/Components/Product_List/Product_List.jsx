@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addAllFetchProducts,fetchProducts } from "../../RTK/Slices/ProductSlice"
+import { addAllFetchProducts } from "../../RTK/Slices/ProductSlice"
+import { fetchProducts } from "../../api/products";
 import { Col } from "react-bootstrap"
 import { Product_Card } from "../../Components/Product_Card/Product_Card"
 

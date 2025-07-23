@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { fetchProducts } from "../../RTK/Slices/ProductSlice";
+import { fetchProducts } from "../../api/products";
 
 export default function Single_Product() {
   const [singleProduct, setSingleProduct] = useState({});
