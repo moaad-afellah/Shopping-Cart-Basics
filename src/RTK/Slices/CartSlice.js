@@ -48,10 +48,11 @@ const cartSlice = createSlice({
             }
             return state;
         },
-        clearCart() {
-            state.products = []
-            return state
-        },
+        clearCart(state) {
+            state.products = [];
+            state.historyActions = [];
+            
+        }
 
     },
 })

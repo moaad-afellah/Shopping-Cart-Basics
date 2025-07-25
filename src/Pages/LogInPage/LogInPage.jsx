@@ -1,12 +1,15 @@
 import LogIn_form from "../../Components/LogIn_form/LogIn_form";
 import { useRef, useState } from 'react';
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { submitLogIn, logInSuccess } from '../../RTK/Slices/LogInSlice'
 import { logInApi } from "../../api/login";
+import { useSelector } from "react-redux";
+import { Eclipse } from "react-loading-io";
 
 
 export function LogInPage() {
+    const { LogIn } = useSelector(state => state)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [logInIfo, setLogInIfo] = useState({ email: '', password: '' });
@@ -14,6 +17,7 @@ export function LogInPage() {
 
     const inputEmailRef = useRef();
     const inputPasswordRef = useRef();
+
 
     const handleLogIn = (e) => {
         e.preventDefault();
@@ -30,12 +34,11 @@ export function LogInPage() {
         if (newInfo.email !== '' && newInfo.password !== '') {
             dispatch(submitLogIn())
             logInApi(newInfo).then((response) => {
-                console.log(response);
                 if (response.status == "OK") {
                     dispatch(logInSuccess())
                     localStorage.setItem('login-info', JSON.stringify(newInfo))
                     navigate('/')
-                    
+
                 }
 
             })
@@ -44,12 +47,23 @@ export function LogInPage() {
 
     return (
         <div>
-            <LogIn_form
-                logInIfo={logInIfo}
-                inputEmailRef={inputEmailRef}
-                inputPasswordRef={inputPasswordRef}
-                handleLogIn={handleLogIn}
-            />
-        </div>
+            {LogIn.status == 'LOGIN_SUBMIT' ? <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "60vh",
+                }}
+            >
+                <Eclipse size={100} />
+            </div>
+                : <LogIn_form
+                    logInIfo={logInIfo}
+                    inputEmailRef={inputEmailRef}
+                    inputPasswordRef={inputPasswordRef}
+                    handleLogIn={handleLogIn}
+                />
+            }
+        </div >
     );
 }

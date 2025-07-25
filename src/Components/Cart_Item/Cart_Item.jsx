@@ -3,34 +3,14 @@ import "./Cart_Item.css"
 import { Button } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { modifyQuantityByAmount } from "../../RTK/Slices/CartSlice"
-import { removeFromCart } from "../../RTK/Slices/CartSlice"
 import { FaRegTrashCan } from "react-icons/fa6";
-import Swal from 'sweetalert2'
-import { useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux";
 
 
-export default function Cart_Item({ item }) {
+
+
+
+export default function Cart_Item({ item, removeItemHandler }) {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const myCart = useSelector(state => state.cart.products)
-
-
-
-    const removeItemHandler = (id) => {
-        dispatch(removeFromCart({ id }))
-        navigate("/")
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "The product has been deleted",
-            showConfirmButton: true,
-        });
-
-
-
-    }
-
     return (
         <>
             <tr>

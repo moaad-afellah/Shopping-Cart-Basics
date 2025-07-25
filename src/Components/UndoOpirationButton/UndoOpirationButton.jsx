@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 function UndoOpirationButton() {
     const { products } = useSelector(state => state)
+    const infoUser = useSelector((state) => state.LogIn.infoUser)
     const historyActions = useSelector(state => state.cart.historyActions)
     const dispatch = useDispatch()
 
@@ -22,7 +23,7 @@ function UndoOpirationButton() {
     }
     return (
         <div>
-            <button onClick={handleClickUndoOperationCart}> Undo Operation</button>
+            {infoUser != null && (<><button onClick={handleClickUndoOperationCart}> Undo Operation</button></>)}
         </div>
     )
 }

@@ -10,7 +10,7 @@
 .login-container {
   background-color: white;
   padding: 40px;
-  width: 100vw; /* Full page width */
+  width: 100vw; 
   height: auto;
   box-shadow: none;
   border-radius: 0;
@@ -25,7 +25,7 @@
 .input-group {
   margin-bottom: 20px;
   width: 100%;
-  padding: 0 20px; /* Optional side padding */
+  padding: 0 20px; 
 }
 
 .input-group label {
@@ -50,7 +50,7 @@
 }
 
 button[type="submit"] {
-  width: calc(100% - 40px); /* match side padding */
+  width: calc(100% - 40px); 
   margin: 0 20px;
   padding: 14px;
   background-color: #007bff;
